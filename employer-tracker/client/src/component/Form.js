@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Form() {
+  const [formInfo, setFormInfo] = useState({
+    name: "",
+    surname: "",
+    progress: "",
+  });
   return (
     <div>
       <form>
