@@ -10,9 +10,12 @@ function Form() {
     const { name, value } = e.target;
     setFormInfo({ ...formInfo, [name]: value });
   };
+  const handleSumit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={handleSumit}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" onChange={handleChange} />
         <label htmlFor="surname">Surname</label>
