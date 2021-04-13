@@ -15,6 +15,7 @@ function Form() {
         <input type="text" name="surname" id="surname" />
         <label htmlFor="">Progress</label>
         <input type="text" name="progress" id="progress" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
