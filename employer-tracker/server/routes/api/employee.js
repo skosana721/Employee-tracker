@@ -5,7 +5,7 @@ const employeeRoutes = (app) => {
     try {
       await res.status(200).json(employees);
     } catch (error) {
-      res.status(404).json(err);
+      res.status(404).json(error);
     }
   });
 };
