@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getEmployee } from "../redux/actions/form";
+import { addEmployee, getEmployee } from "../redux/actions/form";
 
 function Form() {
   const [formInfo, setFormInfo] = useState({
@@ -21,6 +21,7 @@ function Form() {
     const { name, surname, progress } = formInfo;
     e.preventDefault();
     if ((name, surname, progress)) {
+      dispatch(addEmployee(formInfo));
       setFormInfo({
         name: "",
         surname: "",
