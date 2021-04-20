@@ -1,9 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteEmployee } from "../redux/actions/form";
 import { Table } from "reactstrap";
 
 function EmployeeProgress() {
   const employees = useSelector((state) => state.form.form);
+  const dispatch = useDispatch();
   return (
     <Table dark>
       <thead>
@@ -19,12 +21,17 @@ function EmployeeProgress() {
         {employees.length !== 0 &&
           employees.map((employee) => {
             const { id, name, surname, progress } = employee;
-            console.log("id", typeof id);
+
             return (
               <tr key={id}>
                 <td>{name}</td>
                 <td>{surname}</td>
                 <td>{progress}</td>
+                <td>
+                  <button onClick={() => dispatch(deleteEmployee(id))}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
