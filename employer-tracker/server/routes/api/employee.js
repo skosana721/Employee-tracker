@@ -10,12 +10,13 @@ const employeeRoutes = (app) => {
     }
   });
   app.post("/api/employee", async (req, res) => {
+    const { name, surname, progress } = req.body.form;
     try {
       const newEmployee = await {
         id: uuid.v4(),
-        name: req.body.name,
-        surname: req.body.surname,
-        progress: req.body.progress,
+        name,
+        surname,
+        progress,
       };
       employees.push(newEmployee);
       res.status(201).json(employees);
