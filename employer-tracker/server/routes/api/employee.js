@@ -24,6 +24,19 @@ const employeeRoutes = (app) => {
       res.status(400).send(error);
     }
   });
+  app.delete("/api/employee/:id", (req, res) => {
+    const employeeExists = employees.some(
+      (employee) => employee.id === req.params.id
+    );
+    if (employeeExists) {
+      const newEmployees = employees.filter(
+        (employee) => employee.id !== req.params.id
+      );
+      res.send(newEmployees);
+    } else {
+      res.send(`Id was not found`);
+    }
+  });
 };
 
 module.exports = { employeeRoutes };
