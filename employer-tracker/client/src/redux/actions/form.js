@@ -1,11 +1,22 @@
 import axios from "axios";
-import { GET_EMPLOYEE } from "../actionTypes/form";
+import { ADD_EMPLOYEE, GET_EMPLOYEE } from "../actionTypes/form";
 
 export const getEmployee = () => {
   return (dispatch) => {
     axios.get("http://localhost:5000/api/employee").then((res) => {
       dispatch({
         type: GET_EMPLOYEE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const addEmployee = (form) => {
+  return (dispatch) => {
+    axios.post("http://localhost:5000/api/employee", { form }).then((res) => {
+      dispatch({
+        type: ADD_EMPLOYEE,
         payload: res.data,
       });
     });
