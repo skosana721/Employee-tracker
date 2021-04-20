@@ -4,8 +4,9 @@ const initialState = {
   form: [],
 };
 export const formReducer = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
     case GET_EMPLOYEE:
+      console.log("payload", action.payload);
       return {
         ...state,
         form: action.payload,
