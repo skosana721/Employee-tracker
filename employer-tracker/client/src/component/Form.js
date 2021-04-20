@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getEmployee } from "../redux/actions/form";
 
 function Form() {
   const [formInfo, setFormInfo] = useState({
@@ -6,6 +8,10 @@ function Form() {
     surname: "",
     progress: "",
   });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEmployee());
+  }, [dispatch, formInfo]);
   const { name, surname, progress } = formInfo;
   const handleChange = (e) => {
     const { name, value } = e.target;
