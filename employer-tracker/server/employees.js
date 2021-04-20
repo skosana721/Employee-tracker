@@ -1,3 +1,3 @@
-const employees = [{ name: "James", surname: "Smith", work: "Java" }];
+const employees = [];
 
 module.exports = employees;
