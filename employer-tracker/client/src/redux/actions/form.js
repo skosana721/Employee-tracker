@@ -32,7 +32,7 @@ export const deleteEmployee = (id) => {
     axios.delete(`http://localhost:5000/api/employee/${id}`).then((res) => {
       dispatch({
         type: DELETE_EMPLOYEE,
-        patch: res.data,
+        payload: id,
       });
     });
   };
