@@ -15,6 +15,11 @@ export const formReducer = (state = initialState, action) => {
         ...state,
         form: [...state.form, action.payload],
       };
+    case "DELETE_EMPLOYEE":
+      return {
+        ...state,
+        form: state.form.filter((employee) => employee.id !== action.payload),
+      };
     default:
       return state;
   }
