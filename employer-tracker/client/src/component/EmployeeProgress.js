@@ -16,16 +16,18 @@ function EmployeeProgress() {
         </tr>
       </thead>
       <tbody>
-        {employees.map((employee) => {
-          const { id, name, surname, progress } = employee;
-          return (
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{surname}</td>
-              <td>{progress}</td>
-            </tr>
-          );
-        })}
+        {employees.length !== 0 &&
+          employees.map((employee) => {
+            const { id, name, surname, progress } = employee;
+            console.log("id", typeof id);
+            return (
+              <tr key={id}>
+                <td>{name}</td>
+                <td>{surname}</td>
+                <td>{progress}</td>
+              </tr>
+            );
+          })}
       </tbody>
     </Table>
   );
