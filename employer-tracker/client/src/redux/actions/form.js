@@ -3,7 +3,7 @@ import {
   ADD_EMPLOYEE,
   COMPLETED,
   DELETE_EMPLOYEE,
-  Edit_EMPLOYEE,
+  EDIT_EMPLOYEE,
   GET_EMPLOYEE,
 } from "../actionTypes/form";
 
@@ -41,11 +41,16 @@ export const deleteEmployee = (id) => {
   };
 };
 export const editEmployee = (obj) => {
+  const { id, edit } = obj;
   return (dispatch) => {
-    dispatch({
-      type: Edit_EMPLOYEE,
-      payload: obj,
-    });
+    axios
+      .put(`http://localhost:5000/api/employee/${id}`, { edit })
+      .then((res) => {
+        dispatch({
+          type: EDIT_EMPLOYEE,
+          payload: obj,
+        });
+      });
   };
 };
 export const completed = (id) => {
