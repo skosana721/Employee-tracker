@@ -23,7 +23,6 @@ function EmployeeProgress() {
       return employee;
     });
   };
-
   return (
     <div className="display-table">
       <Table dark>
@@ -46,7 +45,7 @@ function EmployeeProgress() {
                   <td>{name}</td>
                   <td>{surname}</td>
                   <td>
-                    {!isEditable ? progress : <EditProgress {...employee} />}
+                    {isEditable ? progress : <EditProgress {...employee} />}
                   </td>
                   {
                     <div className="display-button">
