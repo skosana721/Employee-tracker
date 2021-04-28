@@ -49,3 +49,7 @@
   text-decoration: line-through double red;
   color: blue;
 }
+.display-button {
+  display: flex;
+  flex-direction: row;
+}
