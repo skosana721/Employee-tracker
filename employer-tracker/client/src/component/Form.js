@@ -7,6 +7,7 @@ function Form() {
     name: "",
     surname: "",
     progress: "",
+    isCompleted: false,
   });
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,9 +21,12 @@ function Form() {
   const handleSubmit = (e) => {
     const { name, surname, progress } = formInfo;
     e.preventDefault();
+
     if ((name, surname, progress)) {
       dispatch(addEmployee(formInfo));
+      console.log("formInfo", formInfo);
       setFormInfo({
+        ...formInfo,
         name: "",
         surname: "",
         progress: "",
@@ -30,7 +34,7 @@ function Form() {
     }
   };
   return (
-    <div>
+    <div className="employee-form">
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
@@ -39,14 +43,18 @@ function Form() {
           id="name"
           onChange={handleChange}
           value={name}
+          placeholder="Enter name"
+          required
         />
         <label htmlFor="surname">Surname</label>
         <input
           type="text"
           name="surname"
           id="surname"
+          placeholder="Enter surname"
           onChange={handleChange}
           value={surname}
+          required
         />
         <label htmlFor="">Progress</label>
         <input
@@ -54,7 +62,9 @@ function Form() {
           name="progress"
           id="progress"
           onChange={handleChange}
+          placeholder="Enter your current progress"
           value={progress}
+          required
         />
         <button type="submit">Submit</button>
       </form>
