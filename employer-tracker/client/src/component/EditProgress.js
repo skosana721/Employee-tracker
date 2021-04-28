@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editEmployee } from "../redux/actions/form";
 
 function EditProgress({ id, progress }) {
