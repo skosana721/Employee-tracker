@@ -2,7 +2,7 @@ import {
   GET_EMPLOYEE,
   ADD_EMPLOYEE,
   DELETE_EMPLOYEE,
-  Edit_EMPLOYEE,
+  EDIT_EMPLOYEE,
   COMPLETED,
 } from "../actionTypes/form";
 
@@ -26,7 +26,7 @@ export const formReducer = (state = initialState, action) => {
         ...state,
         form: state.form.filter((employee) => employee.id !== action.payload),
       };
-    case Edit_EMPLOYEE:
+    case EDIT_EMPLOYEE:
       const { id, edit } = action.payload;
       return {
         ...state,
