@@ -20,6 +20,14 @@ function EmployeeProgress() {
     dispatch(completed(id));
     dispatch(getEmployee());
   };
+  const openEditForm = (id) => {
+    return employees.find((employee) => {
+      if (employee.id === id) {
+        setIsEditable(!isEditable);
+      }
+      return employee;
+    });
+  };
 
   return (
     <div className="display-table">
@@ -45,17 +53,20 @@ function EmployeeProgress() {
                   <td>
                     {!isEditable ? progress : <EditProgress {...employee} />}
                   </td>
-                  <button onClick={() => dispatch(deleteEmployee(id))}>
-                    Delete
-                  </button>
                   {
-                    <div>
-                      <button onClick={() => setIsEditable(!isEditable)}>
-                        Edit
-                      </button>
-                      <button onClick={() => completeAndGetEmployees(id)}>
-                        Complete
-                      </button>
+                    <div className="display-button">
+                      <div>
+                        <button onClick={() => completeAndGetEmployees(id)}>
+                          Complete
+                        </button>
+                      </div>
+                      <div>
+                        <button onClick={() => openEditForm(id)}>Edit</button>
+
+                        <button onClick={() => dispatch(deleteEmployee(id))}>
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   }
                 </tr>
