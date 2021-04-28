@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { completed, deleteEmployee, editEmployee } from "../redux/actions/form";
+import {
+  completed,
+  deleteEmployee,
+  editEmployee,
+  getEmployee,
+} from "../redux/actions/form";
 import { Table } from "reactstrap";
 import EditProgress from "./EditProgress";
 
@@ -11,28 +16,10 @@ function EmployeeProgress() {
   const [edit, setEdit] = useState("");
   const [isEditable, setIsEditable] = useState(false);
 
-  const handelComplete = (id) => {
-    employees.map((employee) => {
-      if (employee.id === id) {
-        let newData = { ...employee, isCompleted: !employee.isCompleted };
-        return dispatch(completed(newData));
-      }
-
-      return employee;
-    });
+  const completeAndGetEmployees = (id) => {
+    dispatch(completed(id));
+    dispatch(getEmployee());
   };
-
-  const updateValue = (id, edit) => {
-    let currentProgress;
-    let selectedEmployee = employees.find((employee) => employee.id === id);
-    console.log("selected", selectedEmployee);
-    if (selectedEmployee) {
-      currentProgress = selectedEmployee.progress;
-    }
-    currentProgress = edit;
-    return { currentProgress, id };
-  };
-  console.log(employees);
 
   return (
     <div className="display-table">
@@ -50,17 +37,13 @@ function EmployeeProgress() {
           {employees.length > 0 &&
             employees.map((employee) => {
               const { id, name, surname, progress, isCompleted } = employee;
-              console.log("employee", id);
+
               return (
                 <tr key={id} className={`${isCompleted ? "complete" : ""} `}>
                   <td>{name}</td>
                   <td>{surname}</td>
                   <td>
-                    {!isEditable ? (
-                      progress
-                    ) : (
-                      <EditProgress {...employee} updateValue={updateValue} />
-                    )}
+                    {!isEditable ? progress : <EditProgress {...employee} />}
                   </td>
                   <button onClick={() => dispatch(deleteEmployee(id))}>
                     Delete
@@ -70,7 +53,7 @@ function EmployeeProgress() {
                       <button onClick={() => setIsEditable(!isEditable)}>
                         Edit
                       </button>
-                      <button onClick={() => handelComplete(id)}>
+                      <button onClick={() => completeAndGetEmployees(id)}>
                         Complete
                       </button>
                     </div>
