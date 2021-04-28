@@ -38,7 +38,20 @@ const employeeRoutes = (app) => {
       res.status(404).send(error);
     }
   });
-  app.put("/api/employee/:id", (req, res) => {});
+  app.put("/api/employee/:id", (req, res) => {
+    const { id } = req.params;
+    const { edit } = req.body;
+    try {
+      for (let i in employees) {
+        if (employees[i].id === id) {
+          employees[i].progress = edit;
+        }
+      }
+      return res.status(200).send(employees);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
   app.put("/api/employee/complete/:id", async (req, res) => {
     const { id } = req.params;
     try {
