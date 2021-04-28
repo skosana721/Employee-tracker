@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  completed,
-  deleteEmployee,
-  editEmployee,
-  getEmployee,
-} from "../redux/actions/form";
+import { completed, deleteEmployee, getEmployee } from "../redux/actions/form";
 import { Table } from "reactstrap";
 import EditProgress from "./EditProgress";
 
@@ -13,7 +8,7 @@ function EmployeeProgress() {
   const employees = useSelector((state) => state.form.form);
 
   const dispatch = useDispatch();
-  const [edit, setEdit] = useState("");
+
   const [isEditable, setIsEditable] = useState(false);
 
   const completeAndGetEmployees = (id) => {
